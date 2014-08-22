@@ -12,12 +12,12 @@ class JsonValueTest extends FlatSpec with Matchers {
   }
 
   it should "properly serialize a JNumber" in {
-    JSON.stringify(JNumber(10)) shouldEqual "10"
+    JSON.stringify(JNumber(10)) shouldEqual "10.0"
     JSON.stringify(JNumber(3.5)) shouldEqual "3.5"
   }
 
   it should "properly serialize a JString" in {
-    JSON.stringify(JString("Hello")) shouldEqual "\"hello\""
+    JSON.stringify(JString("Hello")) shouldEqual "\"Hello\""
     JSON.stringify(JString("""I said, "hello"!""")) shouldEqual """"I said, \"hello\"!""""
   }
 
@@ -26,13 +26,13 @@ class JsonValueTest extends FlatSpec with Matchers {
       JNumber(10),
       JBool(false),
       JString("hey")
-    ))) shouldEqual """[10,false,"hey"]"""
+    ))) shouldEqual """[10.0,false,"hey"]"""
   }
 
   it should "properly serialize a JObject" in {
     JSON.stringify(JObject(Seq(
       "hello" -> JString("world"),
       "lucky" -> JNumber(19)
-    ))) shouldEqual """{"hello":"world","lucky":19}"""
+    ))) shouldEqual """{"hello":"world","lucky":19.0}"""
   }
 }
